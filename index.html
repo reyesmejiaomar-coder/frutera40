@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frutera 4.0</title>
+
+<style>
+body{
+background:#121212;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:40px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:15px;
+max-width:500px;
+margin:auto;
+}
+
+h1{
+color:#4CAF50;
+}
+
+#temp{
+font-size:50px;
+color:#4CAF50;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🥭 FRUTERA 4.0</h1>
+
+<h2>Mango Tommy Atkins</h2>
+
+<p>Lote: FN-2026-001</p>
+
+<p>Origen: Atlántida, Honduras</p>
+
+<p>Estado:</p>
+
+<h2>🟢 Cadena de frío conservada</h2>
+
+<div id="temp">4.0°C</div>
+
+</div>
+
+<script>
+
+let t=4;
+
+setInterval(()=>{
+
+t+=(Math.random()-0.5)*0.4;
+
+document.getElementById("temp").innerHTML=t.toFixed(1)+" °C";
+
+},2000);
+
+</script>
+
+</body>
+</html>
