@@ -3,69 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frutera 4.0</title>
+
+<title>Frutera 4.0 | Sistema de Trazabilidad</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-background:#121212;
+background:#0f172a;
 color:white;
-font-family:Arial;
+}
+
+header{
+background:linear-gradient(90deg,#16a34a,#15803d);
+padding:20px;
 text-align:center;
-padding:40px;
+font-size:32px;
+font-weight:bold;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
 }
 
 .card{
-background:#1f1f1f;
+background:#1e293b;
 padding:20px;
 border-radius:15px;
-max-width:500px;
-margin:auto;
+margin-top:20px;
+box-shadow:0 0 15px rgba(0,0,0,.35);
 }
 
-h1{
-color:#4CAF50;
+h2{
+color:#22c55e;
+margin-bottom:15px;
 }
 
-#temp{
-font-size:50px;
-color:#4CAF50;
+.info{
+font-size:20px;
+line-height:1.8;
+}
+
+.temp{
+font-size:55px;
 font-weight:bold;
+color:#38bdf8;
+margin-top:15px;
 }
+
+.estado{
+font-size:26px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.progress{
+width:100%;
+height:25px;
+background:#334155;
+border-radius:30px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.bar{
+height:100%;
+width:100%;
+background:#22c55e;
+transition:1s;
+}
+
+button{
+margin-top:20px;
+padding:15px;
+font-size:20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#16a34a;
+color:white;
+width:100%;
+}
+
+button:hover{
+background:#15803d;
+}
+
+footer{
+padding:30px;
+text-align:center;
+color:#94a3b8;
+font-size:18px;
+}
+
+.badge{
+display:inline-block;
+padding:8px 18px;
+background:#16a34a;
+border-radius:30px;
+font-weight:bold;
+margin-top:10px;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+
+🥭 FRUTERA 4.0
+
+<div class="badge">
+Sistema Inteligente de Trazabilidad
+</div>
+
+</header>
+
+<div class="container">
+
 <div class="card">
 
-<h1>🥭 FRUTERA 4.0</h1>
+<h2>📦 Información del Lote</h2>
 
-<h2>Mango Tommy Atkins</h2>
+<div class="info">
 
-<p>Lote: FN-2026-001</p>
+<b>Lote:</b> FN-2026-001
 
-<p>Origen: Atlántida, Honduras</p>
+<br>
 
-<p>Estado:</p>
+<b>Producto:</b> Mango Tommy Atkins
 
-<h2>🟢 Cadena de frío conservada</h2>
+<br>
 
-<div id="temp">4.0°C</div>
+<b>Origen:</b> Atlántida, Honduras
+
+<br>
+
+<b>Empaque:</b> 26/07/2026
+
+<br>
+
+<b>Destino:</b> Supermercado La Colonia, Comayagua
 
 </div>
 
+</div>
+
+<div class="card">
+
+<h2>🌡 Cadena de Frío</h2>
+
+<div class="temp" id="temp">
+5.0 °C
+</div>
+
+<div class="estado" id="estado">
+✅ Temperatura Correcta
+</div>
+
+<div class="progress">
+<div class="bar" id="barra"></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🚛 Transporte</h2>
+
+<div class="info">
+
+🚛 Camión:
+<b>HN-08</b>
+
+<br><br>
+
+👨 Conductor:
+<b>Juan Pérez</b>
+
+<br><br>
+
+📍 Ruta:
+
+Atlántida → Comayagua
+
+<br><br>
+
+🕒 Hora de salida:
+
+08:00 AM
+
+<br><br>
+
+📦 Estado:
+
+En tránsito
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>✅ Estado del Producto</h2>
+
+<div class="info">
+
+✔ Inspección de calidad aprobada
+
+<br>
+
+✔ Empaque verificado
+
+<br>
+
+✔ Cadena de frío activa
+
+<br>
+
+✔ Transporte autorizado
+
+<br>
+
+✔ QR validado correctamente
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Monitoreo</h2>
+
+<div class="info">
+
+Última actualización:
+
+<span id="hora"></span>
+
+</div>
+
+<button onclick="window.print()">
+🖨 Imprimir Reporte
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+Frutera 4.0 © 2026
+
+<br><br>
+
+Sistema de trazabilidad agrícola
+
+</footer>
+
 <script>
 
-let t=4;
+function actualizar(){
 
-setInterval(()=>{
+let temperatura=(Math.random()*2+4).toFixed(1);
 
-t+=(Math.random()-0.5)*0.4;
+document.getElementById("temp").innerHTML=temperatura+" °C";
 
-document.getElementById("temp").innerHTML=t.toFixed(1)+" °C";
+let barra=document.getElementById("barra");
 
-},2000);
+let estado=document.getElementById("estado");
+
+if(temperatura<=6){
+
+barra.style.width="100%";
+barra.style.background="#22c55e";
+
+estado.innerHTML="✅ Temperatura Correcta";
+estado.style.color="#22c55e";
+
+}else{
+
+barra.style.width="70%";
+barra.style.background="red";
+
+estado.innerHTML="⚠ Temperatura Alta";
+estado.style.color="red";
+
+}
+
+let ahora=new Date();
+
+document.getElementById("hora").innerHTML=
+ahora.toLocaleTimeString();
+
+}
+
+actualizar();
+
+setInterval(actualizar,3000);
 
 </script>
 
